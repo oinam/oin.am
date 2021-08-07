@@ -1,0 +1,5 @@
+title: oin.am
+permalink: /:slug/
+
+plugins:
+  - jekyll-redirect-from

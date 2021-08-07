@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>oin.am</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+  :root {
+    --space: 1rem;
+  }
+  
+  body {
+    width: 90%;
+    max-width: 48rem;
+    margin: calc(2 * var(--space)) auto;
+
+    background: #f9fafb;
+    color: #444;
+
+    font-family: system-ui, -apple-system, "segoe ui", "roboto", "ubuntu", "cantarell", "noto sans", sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol", "noto color emoji";
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    padding: 0 var(--space);
+    font-weight: 500;
+    font-size: x-large;
+  }
+
+  main {
+    margin: var(--space) 0;
+  }
+
+  ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+    padding: calc(0.25 * var(--space)) var(--space);
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+
+    /* clamp it to one line */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  li:hover {
+    border-color: #d1d5db;
+  }
+
+  li:first-child {
+    border-top-left-radius: var(--space);
+    border-top-right-radius: var(--space);
+  }
+  li:last-child {
+    border-bottom-left-radius: var(--space);
+    border-bottom-right-radius: var(--space);
+  }
+
+  li:nth-child(even) {
+    background: #e5e7eb;
+  }
+
+  a, a:visited {
+    text-decoration: none;
+    color: #3b82f6;
+  }
+
+  a:hover, a:active {
+    color: #1d4ed8;
+  }
+</style>
+
+</head>
+<body>
+
+<h1>oin.am from <a href="https://oinam.com/" target="_onm">oinam</a></h1>
+
+<main>
+  {{ content }}
+  {%- assign redirects = site.pages | where_exp: "item", "item.redirect_to != nil" -%}
+  <ul>
+    {% for page in redirects %}
+    <li><a href="{{ page.url | relative_url }}" target="_onm">{{ page.url }}</a> › <a href="{{ page.redirect_to }}" target="_onm">{{ page.redirect_to }}</a></li>
+    {% endfor %}
+  </ul>
+</main>
+
+</body>
+</html>
