@@ -34,40 +34,30 @@
     margin: var(--space) 0;
   }
 
-  ol, ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border:  1px solid #ccc;
   }
 
-  li {
-    margin: 0;
-    padding: calc(0.25 * var(--space)) var(--space);
-    background: #f3f4f6;
-    border-bottom: 1px solid #e5e7eb;
-
-    /* clamp it to one line */
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  td,
+  th {
+    border: 1px solid #E5E7EB;
+    text-align: left;
+    padding: .5rem;
   }
 
-  li:hover {
-    border-color: #d1d5db;
+  th {
+    background: #F6F8FA;
   }
 
-  li:first-child {
-    border-top-left-radius: var(--space);
-    border-top-right-radius: var(--space);
-  }
-  li:last-child {
-    border-bottom-left-radius: var(--space);
-    border-bottom-right-radius: var(--space);
+  tr:nth-child(even) {
+    background: #F6F8FA;
   }
 
-  li:nth-child(even) {
-    background: #e5e7eb;
+  table caption {
+    font-weight: bold;
+    margin-bottom: .5rem;
   }
 
   a, a:visited {
@@ -83,16 +73,19 @@
 </head>
 <body>
 
-<h1>oin.am from <a href="https://oinam.com/" target="_onm">oinam</a></h1>
+<h1>oin.am from <a href="https://oinam.com/">oinam</a></h1>
 
 <main>
   {{ content }}
   {%- assign redirects = site.pages | where_exp: "item", "item.redirect_to != nil" -%}
-  <ul>
+  <table>
     {% for page in redirects %}
-    <li><a href="{{ page.url | relative_url }}" target="_onm">{{ page.url }}</a> › <a href="{{ page.redirect_to }}" target="_onm">{{ page.redirect_to }}</a></li>
+    <tr>
+      <td><a href="{{ page.url | relative_url }}" target="_onm">{{ page.url }}</a></td>
+      <td><a href="{{ page.redirect_to }}" target="_onm">{{ page.redirect_to }}</a></td>
+    </tr>
     {% endfor %}
-  </ul>
+  </table>
 </main>
 
 </body>
